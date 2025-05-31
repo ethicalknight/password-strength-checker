@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Password Strength Checker</h2>
+        <form method="POST">
+            <input type="password" name="password" placeholder="Enter password..." required>
+            <button type="submit">Check Strength</button>
+        </form>
+
+        {% if strength %}
+        <div class="result">
+            <h3>Strength: <span class="{{ strength|lower }}">{{ strength }}</span></h3>
+            <ul>
+                <li class="{{ 'valid' if errors.length else 'invalid' }}">✓ At least 8 characters</li>
+                <li class="{{ 'valid' if errors.uppercase else 'invalid' }}">✓ Contains uppercase letter</li>
+                <li class="{{ 'valid' if errors.lowercase else 'invalid' }}">✓ Contains lowercase letter</li>
+                <li class="{{ 'valid' if errors.digit else 'invalid' }}">✓ Contains a number</li>
+                <li class="{{ 'valid' if errors.symbol else 'invalid' }}">✓ Contains a special character</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
